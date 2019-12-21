@@ -14,38 +14,53 @@ require('../css/app.css');
 import React from 'react';
 import ReactDOM from 'react-dom';
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    handleChecked() {
+        alert("test");
+    }
+
     render() {
         return (
             <div>
-                <form id="search_form" action="">
-                    <h2>Je souhaite rencontrer</h2>
-                    <input type="radio" name="his_gender" value="male" id="" />
-                    <label htmlFor="male">un homme</label>
-                    <input type="radio" name="his_gender" value="female" id="" />
-                    <label htmlFor="male">une femme</label>
-                    <input type="radio" name="his_gender" value="genderqueer" id="" />
-                    <label htmlFor="male">Peu importe</label>
+                <form action="">
+                    <h1>Étape 1:</h1>
+                    <div id="looking-for" display="1">
+                        <h2>Je souhaite rencontrer</h2>
+                        <input type="radio" name="his_gender" value="male" id="" onChange={this.handleChecked} />
+                        <label htmlFor="male">un homme</label>
+                        <input type="radio" name="his_gender" value="female" id="" onChange={this.handleChecked}/>
+                        <label htmlFor="female">une femme</label>
+                        <input type="radio" name="his_gender" value="genderqueer" id="" onChange={this.handleChecked}/>
+                        <label htmlFor="genderqueer">Peu importe</label>
+                    </div>
+                    <div id="my-gender">
+                        <h2>Je suis</h2>
+                        <input type="radio" name="my_gender" value="male" id="" />
+                        <label htmlFor="male">un homme</label>
+                        <input type="radio" name="my_gender" value="female" id="" />
+                        <label htmlFor="male">une femme</label>
+                        <input type="radio" name="my_gender" value="genderqueer" id="" />
+                        <label htmlFor="male">Non binaire</label>
+                    </div>
+                    <div id="my-city">
+                        <h2>Ma ville</h2>
+                        <input type="text" name="city" id="" />
+                    </div>
+                    <div id="my-firstname">
+                        <h2>Mon prénom</h2>
+                        <input type="text" name="firstname" id="" />
+                    </div>
+                    <h1>Étape 2:</h1>
+                    <div id="serious">
+                        <h2>Etes-vous prêt à vous engager dans une relation sérieuse</h2>
+                        <input type="text" name="firstname" id="" />
+                    </div>
                 </form>
-                <form id="mygender_form" action="">
-                    <h2>Je suis</h2>
-                    <input type="radio" name="my_gender" value="male" id="" />
-                    <label htmlFor="male">un homme</label>
-                    <input type="radio" name="my_gender" value="female" id="" />
-                    <label htmlFor="male">une femme</label>
-                    <input type="radio" name="my_gender" value="genderqueer" id="" />
-                    <label htmlFor="male">Non binaire</label>
-                </form>
-                <form id="mycity_form" action="">
-                    <h2>Ma ville</h2>
-                    <input type="text" name="city" id=""/>
-                </form>
-                <form id="myfirstname_form" action="">
-                    <h2>Mon prénom</h2>
-                    <input type="text" name="firstname" id=""/>
-                </form>
-
             </div>
         )
     }
 }
-ReactDOM.render(<App />, document.getElementById('root'));
