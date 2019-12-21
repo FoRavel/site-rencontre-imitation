@@ -19,9 +19,9 @@ class UserType extends AbstractType
                 'label'    => 'Je souhaite rencontrer',
                 'expanded' => true,
                 'choices'  => [
-                    'Un homme' => null,
-                    'Une femme' => true,
-                    'Peu importe' => false,
+                    'Un homme' => 'male',
+                    'Une femme' => 'female',
+                    'Peu importe' => 'dontmind',
                 ]
             ])
             ->add('firstname')
