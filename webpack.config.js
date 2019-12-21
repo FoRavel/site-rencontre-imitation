@@ -52,6 +52,7 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
+    
 
     // enables Sass/SCSS support
     //.enableSassLoader()
@@ -67,7 +68,7 @@ Encore
     //.autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
+    .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
