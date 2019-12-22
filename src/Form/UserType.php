@@ -32,7 +32,7 @@ class UserType extends AbstractType
             ->add('isMarried')
             ->add('hasChildren')
             ->add('city')
-            ->add('country')
+            //->add('country')
             ->add('isSmoker')
             ->add('Gender', EntityType::class, [
                 // looks for choices from this entity

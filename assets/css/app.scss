@@ -1,0 +1,17 @@
+@import '~materialize-css/sass/materialize';
+
+body {
+    font-family: "Roboto", sans-serif !important;
+}
+
+#user_meet label, #user_Gender label{
+    cursor: pointer;
+}
+
+input:hover + label {
+    background: red;
+}
+
+#signup_form{
+    
+}

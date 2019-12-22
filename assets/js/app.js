@@ -6,10 +6,24 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
+require('../css/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
+global.$ = global.jQuery = $;
+$("div[id^='q-'").css('display', 'none');
+$("#q-1").toggle()
+var n = 1;
+$('#signup_form input[type=radio]').change(function(){
+    $('#q-'+ n).toggle();
+    n++;
+    $('#q-'+ n).toggle();
+    console.log(n)
+})
+$('#next').click(function(){
+    
+})
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';
