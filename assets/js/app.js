@@ -14,53 +14,64 @@ global.$ = global.jQuery = $;
 $("div[id^='q-'").css('display', 'none');
 $("#q-1").toggle()
 var n = 1;
-$('#signup_form input[type=radio]').change(function(){
-    $('#q-'+ n).toggle();
+$('#signup_form input[type=radio]').change(function () {
+    $('#q-' + n).toggle();
     n++;
-    $('#q-'+ n).toggle();
+    $('#q-' + n).toggle();
     console.log(n)
 })
-$('#next').click(function(){
-    
+$('#next').click(function () {
+
 })
-$("label[for^='user_meet_']").hover(function(){
-    if($(this).attr('for') == 'user_meet_0'){
-        $(this).css('background-color', '#3377ff');
-    }
-    if($(this).attr('for') == 'user_meet_1'){
-        $(this).css('background-color', 'pink')
-    }
-    if($(this).attr('for') == 'user_meet_2'){
-        $(this).css('background-color', 'black')
-    }
-    $(this).css('color', 'white');
-}, function(){
-    $(this).css('background-color', '#f6f6f6')
-    $(this).css('color', '#545454');
+$("label[for^='user_meet_']").hover(function () {
+
+}, function () {
+
 })
-$("label[for^='user_meet_']").focus(function(){
-    if($(this).attr('for') == 'user_meet_0'){
-        $(this).css('background-color', '#3377ff');
-    }
-    if($(this).attr('for') == 'user_meet_1'){
-        $(this).css('background-color', 'pink')
-    }
-    if($(this).attr('for') == 'user_meet_2'){
-        $(this).css('background-color', 'black')
-    }
-    $(this).css('color', 'white');
+$("label[for^='user_meet_']").focus(function () {
+    $(this).addClass("focused");
+    $(this).keypress(function () {
+        if (event.which == 32) {
+            if ($(this).attr("for") == "user_meet_0") {
+                $("#user_meet_0").change()
+            } else
+                if ($(this).attr("for") == "user_meet_1") {
+                    $("#user_meet_1").change()
+                } else
+                    if ($(this).attr("for") == "user_meet_2") {
+                        $("#user_meet_2").change()
+                    }
+
+        }
+    })
 })
-$("label[for^='user_meet_']").focusout(function(){
-    if($(this).attr('for') == 'user_meet_0'){
-        $(this).css('background-color', '#f6f6f6');
-    }
-    if($(this).attr('for') == 'user_meet_1'){
-        $(this).css('background-color', '#f6f6f6')
-    }
-    if($(this).attr('for') == 'user_meet_2'){
-        $(this).css('background-color', '#f6f6f6')
-    }
-    $(this).css('color', '#4D4D4D');
+
+$("label[for^='user_Gender_']").focus(function () {
+    $(this).addClass("focused");
+    $(this).keypress(function () {
+        if (event.which == 32) {
+            if ($(this).attr("for") == "user_Gender_0") {
+                $("#user_Gender_0").change()
+            } else
+                if ($(this).attr("for") == "user_Gender_1") {
+                    $("#user_Gender_1").change()
+                } else
+                    if ($(this).attr("for") == "user_Gender_2") {
+                        $("#user_Gender_2").change()
+                    }
+
+        }
+    })
+})
+
+$("label[for^='user_meet_']").focusout(function () {
+    $(this).removeClass("focused");
+
+})
+
+$("label[for^='user_Gender_']").focusout(function () {
+    $(this).removeClass("focused");
+
 })
 
 
@@ -85,9 +96,9 @@ class App extends React.Component {
                         <h2>Je souhaite rencontrer</h2>
                         <input type="radio" name="his_gender" value="male" id="" onChange={this.handleChecked} />
                         <label htmlFor="male">un homme</label>
-                        <input type="radio" name="his_gender" value="female" id="" onChange={this.handleChecked}/>
+                        <input type="radio" name="his_gender" value="female" id="" onChange={this.handleChecked} />
                         <label htmlFor="female">une femme</label>
-                        <input type="radio" name="his_gender" value="genderqueer" id="" onChange={this.handleChecked}/>
+                        <input type="radio" name="his_gender" value="genderqueer" id="" onChange={this.handleChecked} />
                         <label htmlFor="genderqueer">Peu importe</label>
                     </div>
                     <div id="my-gender">

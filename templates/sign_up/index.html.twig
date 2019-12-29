@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block  form_row %}
+
+<div>
+    {{- form_label(form) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+    {{- form_help(form) -}}
+</div>
+
+{% endblock %}
+
+
 {% block title %}Hello SignUpController!{% endblock %}
 
 
@@ -19,15 +33,12 @@
         padding: 2px 6px;
     }
 </style>
-{% form_theme form _self %}
-{% block  choice_widget_expanded %}
 
-{% endblock %}
 <div id="root"></div>
 <div class="blank-space-130"></div>
 <div class="row">
     {{form_start(form, {'attr':{'id':'signup_form', 'class':'col s12'}})}}
-
+ 
     <div id="q-1" class="row">
         <div class="center-align">
             <div class="margin-bottom-35">
@@ -37,7 +48,7 @@
                 {% for child in form.meet %}
                 <div class="col s12 m4 l4 xl4 margin-bottom-35">
                     {{form_widget(child)}}
-                    {{form_label(child, null, {'label_attr' : {'class' : 'z-depth-1', 'tabindex' : '0'}})}}
+                    {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
                 </div>
                 {% endfor %}
             </div>
@@ -52,15 +63,25 @@
                 {% for child in form.Gender %}
                 <div class="col s12 m4 l4 xl4 margin-bottom-35">
                     {{form_widget(child)}}
-                    {{form_label(child, null, {'label_attr' : {'class' : 'z-depth-1'}})}}
+                    {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
     <div id="q-3">
-        {{form_row(form.city)}}
-        <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">chevron_right</i></a>
+        <p class="padding-20-30 bg-pink rounded fit-content white-text">Dans quelle ville habites-tu?</p>
+        <div class="row">
+            <div class="input-field">
+                {{form_row(form.city)}}
+                
+            </div>
+
+            
+        </div>
+        <div class="row right-align">
+            <a class="waves-effect waves-light btn">Valider la réponse</a>
+        </div>
     </div>
     <div id="q-4">
         {{form_row(form.firstname)}}
@@ -88,4 +109,5 @@
     </div>
     {{form_end(form)}}
 </div>
+
 {% endblock %}
