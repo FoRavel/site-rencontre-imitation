@@ -22,7 +22,11 @@ class UserType extends AbstractType
                     'Un homme' => 'male',
                     'Une femme' => 'female',
                     'Peu importe' => 'dontmind',
-                ]
+                ],
+                'choice_attr' => function($choice, $key, $value) {
+                    // adds a class like attending_yes, attending_no, etc
+                    return ['class' => 'col s4'];
+                },
             ])
             ->add('firstname')
             ->add('email')

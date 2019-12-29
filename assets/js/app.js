@@ -23,6 +23,45 @@ $('#signup_form input[type=radio]').change(function(){
 $('#next').click(function(){
     
 })
+$("label[for^='user_meet_']").hover(function(){
+    if($(this).attr('for') == 'user_meet_0'){
+        $(this).css('background-color', '#3377ff');
+    }
+    if($(this).attr('for') == 'user_meet_1'){
+        $(this).css('background-color', 'pink')
+    }
+    if($(this).attr('for') == 'user_meet_2'){
+        $(this).css('background-color', 'black')
+    }
+    $(this).css('color', 'white');
+}, function(){
+    $(this).css('background-color', '#f6f6f6')
+    $(this).css('color', '#545454');
+})
+$("label[for^='user_meet_']").focus(function(){
+    if($(this).attr('for') == 'user_meet_0'){
+        $(this).css('background-color', '#3377ff');
+    }
+    if($(this).attr('for') == 'user_meet_1'){
+        $(this).css('background-color', 'pink')
+    }
+    if($(this).attr('for') == 'user_meet_2'){
+        $(this).css('background-color', 'black')
+    }
+    $(this).css('color', 'white');
+})
+$("label[for^='user_meet_']").focusout(function(){
+    if($(this).attr('for') == 'user_meet_0'){
+        $(this).css('background-color', '#f6f6f6');
+    }
+    if($(this).attr('for') == 'user_meet_1'){
+        $(this).css('background-color', '#f6f6f6')
+    }
+    if($(this).attr('for') == 'user_meet_2'){
+        $(this).css('background-color', '#f6f6f6')
+    }
+    $(this).css('color', '#4D4D4D');
+})
 
 
 import React from 'react';
