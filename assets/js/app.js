@@ -73,21 +73,22 @@ $("label[for^='user_Gender_']").focusout(function () {
 
 })
 
-$("#submit-city").click(function(){
-    $("#signup_form").submit()
-})
-$("#submit-city").on("submit", function(e){
-    e.preventDefault();
-    var $form = $(e.currentTarget);
-    $.ajax({
-        url: $form.attr('action'),
-        method: 'POST',
-        data: $form.serialize(),
-        success: function(data) {
-            $form.closest('.row').html(data);
-        }
-    });
-})
+
+   
+    $("#submit-city").on("submit", function(e){
+        e.preventDefault();
+        var $form = $(e.currentTarget);
+        $.ajax({
+            url: $form.attr('action'),
+            method: 'POST',
+            data: $form.serialize(),
+            success: function(data) {
+                $form.closest('.row').html(data);
+            }
+        });
+    })
+
+
 
 
 import React from 'react';
