@@ -66,12 +66,27 @@ $("label[for^='user_Gender_']").focus(function () {
 
 $("label[for^='user_meet_']").focusout(function () {
     $(this).removeClass("focused");
-
 })
 
 $("label[for^='user_Gender_']").focusout(function () {
     $(this).removeClass("focused");
 
+})
+
+$("#submit-city").click(function(){
+    $("#signup_form").submit()
+})
+$("#submit-city").on("submit", function(e){
+    e.preventDefault();
+    var $form = $(e.currentTarget);
+    $.ajax({
+        url: $form.attr('action'),
+        method: 'POST',
+        data: $form.serialize(),
+        success: function(data) {
+            $form.closest('.row').html(data);
+        }
+    });
 })
 
 
