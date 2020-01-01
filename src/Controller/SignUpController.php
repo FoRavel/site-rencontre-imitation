@@ -23,10 +23,19 @@ class SignUpController extends AbstractController
         
         // render just the form for AJAX, there is a validation error
         if ($request->isXmlHttpRequest()) {
+            if($form->get('city')->isValid()){
+                return $this->render('sign_up/form.html.twig', [
+                    'form' => $form->createView(),
+                    'questionNumber' => $request->request->get('q')+1
+                ]);
+            }else{
             return $this->render('sign_up/form.html.twig', [
-                'form' => $form->createView()
-            ]);
+                'form' => $form->createView(),
+                'questionNumber' => $request->request->get('q')
+            ]);}
         }
+
+
 
         return $this->render('sign_up/index.html.twig', [
             'form' => $form->createView()

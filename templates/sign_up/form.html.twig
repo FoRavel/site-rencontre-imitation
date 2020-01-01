@@ -1,3 +1,9 @@
+{% if questionNumber is defined %}
+
+<span id="test" data-id="{{questionNumber}}"></span>
+
+{% endif %}
+
 <div class="wrapper-form">
     {{form_start(form, {'attr':{'id':'signup_form', 'class':'col s12'}})}}
 
@@ -43,6 +49,7 @@
             <button id="submit-city" class="waves-effect waves-light btn">Valider la réponse</button>
         </div>
     </div>
+    
     <div id="q-4">
         {{form_row(form.firstname)}}
     </div>

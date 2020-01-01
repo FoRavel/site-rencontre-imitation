@@ -20,38 +20,27 @@ $("label[for^='user_meet_']").hover(function () {
 }, function () {
 
 })*/
-handleFormDisplay();
-//hide all form questions but one
-function showTheQuestion(){
+
+$("div[id^='q-'").css('display', 'none');
+$("#q-1").toggle()
+var n = 1;
+$('#signup_form input[type=radio]').change(function () {
+    $('#q-' + n).toggle();
+    n++;
+    $('#q-' + n).toggle();
+})
+
+handleRB();
+handleIT();
+
+//Hide all form questions but one
+function showTheQuestion(n) {
     $("div[id^='q-'").css('display', 'none');
-    $("#q-1").toggle()
+    $("#q-" + n).toggle()
 }
-function handleFormDisplay(){
-    showTheQuestion();
-    var n = 1;
-    $('#signup_form input[type=radio]').change(function () {
-        $('#q-' + n).toggle();
-        n++;
-        $('#q-' + n).toggle();
-    })
-    $("label[for^='user_meet_']").focus(function () {
-        $(this).addClass("focused");
-        $(this).keypress(function () {
-            if (event.which == 32) {
-                if ($(this).attr("for") == "user_meet_0") {
-                    $("#user_meet_0").change()
-                } else
-                    if ($(this).attr("for") == "user_meet_1") {
-                        $("#user_meet_1").change()
-                    } else
-                        if ($(this).attr("for") == "user_meet_2") {
-                            $("#user_meet_2").change()
-                        }
-    
-            }
-        })
-    })
-    
+
+//Add focus style and confirmation radio choice with spacebar
+function handleRB(){
     $("label[for^='user_Gender_']").focus(function () {
         $(this).addClass("focused");
         $(this).keypress(function () {
@@ -65,35 +54,39 @@ function handleFormDisplay(){
                         if ($(this).attr("for") == "user_Gender_2") {
                             $("#user_Gender_2").change()
                         }
-    
+
             }
         })
     })
-    
+
     $("label[for^='user_meet_']").focusout(function () {
         $(this).removeClass("focused");
     })
-    
+
     $("label[for^='user_Gender_']").focusout(function () {
         $(this).removeClass("focused");
-    
+
     })
-    
+}
+
+function handleIT() {
     $("#submit-city").on("click", function (e) {
         $("#signup_form").submit();
     })
-    
+
     $("#signup_form").on("submit", function (e) {
+        var questionNumber = $("#submit-city").attr('data-id');
+        console.log(questionNumber)
         e.preventDefault();
-    
         var $form = $(e.currentTarget);
         $.ajax({
             url: $form.attr('action'),
             method: 'POST',
-            data: $form.serialize(),
+            data: $form.serialize() + "&q=" + questionNumber +"",
             success: function (data) {
-                $form.closest('.wrapper-form').html(data);
-                handleFormDisplay();
+                $form.closest('.wrapper-form').html(data);               
+                handleIT();
+                showTheQuestion($("#test").attr('data-id'));
             },
             error: function (error) {
                 alert("test")
