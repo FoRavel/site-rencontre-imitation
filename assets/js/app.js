@@ -11,15 +11,7 @@ require('../css/app.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
 global.$ = global.jQuery = $;
-$("div[id^='q-'").css('display', 'none');
-$("#q-1").toggle()
-var n = 1;
-$('#signup_form input[type=radio]').change(function () {
-    $('#q-' + n).toggle();
-    n++;
-    $('#q-' + n).toggle();
-    console.log(n)
-})
+/*
 $('#next').click(function () {
 
 })
@@ -27,66 +19,89 @@ $("label[for^='user_meet_']").hover(function () {
 
 }, function () {
 
-})
-$("label[for^='user_meet_']").focus(function () {
-    $(this).addClass("focused");
-    $(this).keypress(function () {
-        if (event.which == 32) {
-            if ($(this).attr("for") == "user_meet_0") {
-                $("#user_meet_0").change()
-            } else
-                if ($(this).attr("for") == "user_meet_1") {
-                    $("#user_meet_1").change()
-                } else
-                    if ($(this).attr("for") == "user_meet_2") {
-                        $("#user_meet_2").change()
-                    }
-
-        }
+})*/
+handleFormDisplay();
+//hide all form questions but one
+function showTheQuestion(){
+    $("div[id^='q-'").css('display', 'none');
+    $("#q-1").toggle()
+}
+function handleFormDisplay(){
+    showTheQuestion();
+    var n = 1;
+    $('#signup_form input[type=radio]').change(function () {
+        $('#q-' + n).toggle();
+        n++;
+        $('#q-' + n).toggle();
     })
-})
-
-$("label[for^='user_Gender_']").focus(function () {
-    $(this).addClass("focused");
-    $(this).keypress(function () {
-        if (event.which == 32) {
-            if ($(this).attr("for") == "user_Gender_0") {
-                $("#user_Gender_0").change()
-            } else
-                if ($(this).attr("for") == "user_Gender_1") {
-                    $("#user_Gender_1").change()
+    $("label[for^='user_meet_']").focus(function () {
+        $(this).addClass("focused");
+        $(this).keypress(function () {
+            if (event.which == 32) {
+                if ($(this).attr("for") == "user_meet_0") {
+                    $("#user_meet_0").change()
                 } else
-                    if ($(this).attr("for") == "user_Gender_2") {
-                        $("#user_Gender_2").change()
-                    }
-
-        }
+                    if ($(this).attr("for") == "user_meet_1") {
+                        $("#user_meet_1").change()
+                    } else
+                        if ($(this).attr("for") == "user_meet_2") {
+                            $("#user_meet_2").change()
+                        }
+    
+            }
+        })
     })
-})
-
-$("label[for^='user_meet_']").focusout(function () {
-    $(this).removeClass("focused");
-})
-
-$("label[for^='user_Gender_']").focusout(function () {
-    $(this).removeClass("focused");
-
-})
-
-
-   
-    $("#submit-city").on("submit", function(e){
+    
+    $("label[for^='user_Gender_']").focus(function () {
+        $(this).addClass("focused");
+        $(this).keypress(function () {
+            if (event.which == 32) {
+                if ($(this).attr("for") == "user_Gender_0") {
+                    $("#user_Gender_0").change()
+                } else
+                    if ($(this).attr("for") == "user_Gender_1") {
+                        $("#user_Gender_1").change()
+                    } else
+                        if ($(this).attr("for") == "user_Gender_2") {
+                            $("#user_Gender_2").change()
+                        }
+    
+            }
+        })
+    })
+    
+    $("label[for^='user_meet_']").focusout(function () {
+        $(this).removeClass("focused");
+    })
+    
+    $("label[for^='user_Gender_']").focusout(function () {
+        $(this).removeClass("focused");
+    
+    })
+    
+    $("#submit-city").on("click", function (e) {
+        $("#signup_form").submit();
+    })
+    
+    $("#signup_form").on("submit", function (e) {
         e.preventDefault();
+    
         var $form = $(e.currentTarget);
         $.ajax({
             url: $form.attr('action'),
             method: 'POST',
             data: $form.serialize(),
-            success: function(data) {
-                $form.closest('.row').html(data);
+            success: function (data) {
+                $form.closest('.wrapper-form').html(data);
+                handleFormDisplay();
+            },
+            error: function (error) {
+                alert("test")
             }
         });
     })
+}
+
 
 
 

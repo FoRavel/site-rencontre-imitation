@@ -39,75 +39,77 @@
 
 <main>
     <div class="row">
-        {{form_start(form, {'attr':{'id':'signup_form', 'class':'col s12'}})}}
+        <div class="wrapper-form">
+            {{form_start(form, {'attr':{'id':'signup_form', 'class':'col s12'}})}}
 
-        <div id="q-1" class="row">
-            <div class="center-align">
-                <div class="margin-bottom-35">
-                    {{form_label(form.meet, null, {'label_attr' : {'class' : 'big-label'}})}}
-                </div>
-                <div id="user_meet" class="row">
-                    {% for child in form.meet %}
-                    <div class="col s12 m4 l4 xl4 margin-bottom-35">
-                        {{form_widget(child)}}
-                        {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
+            <div id="q-1" class="row">
+                <div class="center-align">
+                    <div class="margin-bottom-35">
+                        {{form_label(form.meet, null, {'label_attr' : {'class' : 'big-label'}})}}
                     </div>
-                    {% endfor %}
+                    <div id="user_meet" class="row">
+                        {% for child in form.meet %}
+                        <div class="col s12 m4 l4 xl4 margin-bottom-35">
+                            {{form_widget(child)}}
+                            {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="q-2">
-            <div class="center-align">
-                <div class="margin-bottom-35">
-                    {{form_label(form.Gender, null, {'label_attr' : {'class' : 'big-label'}})}}
-                </div>
-                <div id="user_Gender" class="row">
-                    {% for child in form.Gender %}
-                    <div class="col s12 m4 l4 xl4 margin-bottom-35">
-                        {{form_widget(child)}}
-                        {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
+            <div id="q-2">
+                <div class="center-align">
+                    <div class="margin-bottom-35">
+                        {{form_label(form.Gender, null, {'label_attr' : {'class' : 'big-label'}})}}
                     </div>
-                    {% endfor %}
+                    <div id="user_Gender" class="row">
+                        {% for child in form.Gender %}
+                        <div class="col s12 m4 l4 xl4 margin-bottom-35">
+                            {{form_widget(child)}}
+                            {{form_label(child, null, {'label_attr' : {'class' : 'btn-large', 'tabindex' : '0'}})}}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="q-3">
-            <p class="padding-20-30 bg-pink rounded fit-content white-text">Dans quelle ville habites-tu?</p>
-            <div class="row">
-                <div class="input-field">
-                    {{form_row(form.city)}}
+            <div id="q-3">
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Dans quelle ville habites-tu?</p>
+                <div class="row">
+                    <div class="input-field">
+                        {{form_row(form.city)}}
 
+                    </div>
+                </div>
+                <div class="row right-align">
+                    <button id="submit-city" class="waves-effect waves-light btn">Valider la réponse</button>
                 </div>
             </div>
-            <div class="row right-align">
-                <button id="submit-city" class="waves-effect waves-light btn">Valider la réponse</button>
+            <div id="q-4">
+                {{form_row(form.firstname)}}
             </div>
+            <div id="q-5">
+                {{form_row(form.email)}}
+            </div>
+            <div id="q-7">
+                {{form_row(form.password)}}
+            </div>
+            <div id="q-8">
+                {{form_row(form.birthday)}}
+            </div>
+            <div id="q-9">
+                {{form_row(form.isSerious)}}
+            </div>
+            <div id="q-10">
+                {{form_row(form.isMarried)}}
+            </div>
+            <div id="q-11">
+                {{form_row(form.hasChildren)}}
+            </div>
+            <div id="q-12">
+                {{form_row(form.isSmoker)}}
+            </div>
+            {{form_end(form)}}
         </div>
-        <div id="q-4">
-            {{form_row(form.firstname)}}
-        </div>
-        <div id="q-5">
-            {{form_row(form.email)}}
-        </div>
-        <div id="q-7">
-            {{form_row(form.password)}}
-        </div>
-        <div id="q-8">
-            {{form_row(form.birthday)}}
-        </div>
-        <div id="q-9">
-            {{form_row(form.isSerious)}}
-        </div>
-        <div id="q-10">
-            {{form_row(form.isMarried)}}
-        </div>
-        <div id="q-11">
-            {{form_row(form.hasChildren)}}
-        </div>
-        <div id="q-12">
-            {{form_row(form.isSmoker)}}
-        </div>
-        {{form_end(form)}}
     </div>
 </main>
 
