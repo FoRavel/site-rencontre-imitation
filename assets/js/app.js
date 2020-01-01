@@ -70,19 +70,22 @@ function handleRB(){
 }
 
 function handleIT() {
+    var fieldName = null;
     $("#submit-city").on("click", function (e) {
         $("#signup_form").submit();
+        fieldName = $(this).closest('input').attr('data-field');
+        console.log(fieldName)
     })
-
+    
     $("#signup_form").on("submit", function (e) {
         var questionNumber = $("#submit-city").attr('data-id');
-        console.log(questionNumber)
+        
         e.preventDefault();
         var $form = $(e.currentTarget);
         $.ajax({
             url: $form.attr('action'),
             method: 'POST',
-            data: $form.serialize() + "&q=" + questionNumber +"",
+            data: $form.serialize() + "&q=" + questionNumber +"&f=" + fieldName,
             success: function (data) {
                 $form.closest('.wrapper-form').html(data);               
                 handleIT();

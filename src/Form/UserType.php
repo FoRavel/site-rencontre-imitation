@@ -22,20 +22,16 @@ class UserType extends AbstractType
                     'Un homme' => 'male',
                     'Une femme' => 'female',
                     'Peu importe' => 'dontmind',
-                ],
-                'choice_attr' => function($choice, $key, $value) {
-                    // adds a class like attending_yes, attending_no, etc
-                    return ['class' => 'col s4'];
-                },
+                ]
             ])
-            ->add('firstname')
+            ->add('firstname', null, ['attr' => ['data-field' => 'firstname']])
             ->add('email')
             ->add('password')
             ->add('birthday')
             ->add('isSerious')
             ->add('isMarried')
             ->add('hasChildren')
-            ->add('city')
+            ->add('city', null, ['attr' => ['data-field' => 'city']])
             //->add('country')
             ->add('isSmoker')
             ->add('Gender', EntityType::class, [
