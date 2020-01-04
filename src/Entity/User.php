@@ -22,8 +22,22 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstname;
+    private $meet;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Gender", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Gender;
+    /**
+     * @Assert\NotBlank(message="test")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -54,11 +68,6 @@ class User
      */
     private $hasChildren;
 
-    /**
-     * @Assert\NotBlank(message="test")
-     * @ORM\Column(type="string", length=255)
-     */
-    private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,16 +79,9 @@ class User
      */
     private $isSmoker;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Gender", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Gender;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $meet;
+    public function getProperties(){
+       return get_object_vars($this);
+    }
 
     public function getId(): ?int
     {

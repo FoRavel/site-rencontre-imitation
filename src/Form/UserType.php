@@ -8,7 +8,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UserType extends AbstractType
 {
@@ -27,7 +29,11 @@ class UserType extends AbstractType
             ->add('firstname', null, ['attr' => ['data-field' => 'firstname']])
             ->add('email')
             ->add('password')
-            ->add('birthday')
+            ->add('birthday', BirthdayType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ]
+            ])
             ->add('isSerious')
             ->add('isMarried')
             ->add('hasChildren')

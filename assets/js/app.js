@@ -21,14 +21,19 @@ $("label[for^='user_meet_']").hover(function () {
 
 })*/
 
-$("div[id^='q-'").css('display', 'none');
-$("#q-1").toggle()
-var n = 1;
-$('#signup_form input[type=radio]').change(function () {
-    $('#q-' + n).toggle();
-    n++;
-    $('#q-' + n).toggle();
-})
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+
+// $("div[id^='q-'").css('display', 'none');
+// $("#q-1").toggle()
+// var n = 1;
+// $('#signup_form input[type=radio]').change(function () {
+//     $('#q-' + n).toggle();
+//     n++;
+//     $('#q-' + n).toggle();
+// })
 
 handleRB();
 handleIT();
@@ -70,22 +75,24 @@ function handleRB(){
 }
 
 function handleIT() {
-    var fieldName = null;
-    $("#submit-city").on("click", function (e) {
+
+    var btn = null;
+
+    $(".submit-field").on("click", function (e) {
+        btn = $(this);
         $("#signup_form").submit();
-        fieldName = $(this).closest('input').attr('data-field');
-        console.log(fieldName)
+  
     })
     
     $("#signup_form").on("submit", function (e) {
-        var questionNumber = $("#submit-city").attr('data-id');
-        
+        var questionNumber = btn.attr('data-id');
+        console.log(questionNumber)
         e.preventDefault();
         var $form = $(e.currentTarget);
         $.ajax({
             url: $form.attr('action'),
             method: 'POST',
-            data: $form.serialize() + "&q=" + questionNumber +"&f=" + fieldName,
+            data: $form.serialize() + "&q=" + questionNumber,
             success: function (data) {
                 $form.closest('.wrapper-form').html(data);               
                 handleIT();
