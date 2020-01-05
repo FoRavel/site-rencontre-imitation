@@ -1,4 +1,5 @@
-@import '~materialize-css/sass/materialize';
+
+
 
 body {
     font-family: "Roboto", sans-serif !important;
@@ -25,6 +26,8 @@ body {
     padding: 20px 30px;
 }
 
+
+
 .rounded{
     -webkit-border-radius: 130px;
     -webkit-border-bottom-left-radius: 0;
@@ -43,3 +46,27 @@ body {
 .bg-pink{
     @extend .pink, .lighten-3;
 }
+
+.display{
+    display: block !important ; 
+}
+.btn-large-bubble{
+    @extend .btn-large;
+    -webkit-border-radius: 130px;
+    -moz-border-radius: 130px;
+    -moz-border-radius-bottomleft: 0;
+    border-radius: 130px !important;
+}
+.btn-large-bubble__choiced{
+    @extend .btn-large;
+    -webkit-border-radius: 130px;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius: 130px;
+    -moz-border-radius-bottomleft: 0;
+    border-radius: 130px !important;
+    border-bottom-right-radius: 0!important;
+}
+
+
+@import '~materialize-css/sass/materialize';
+@import '~materialize-css/sass/components/_variables.scss';

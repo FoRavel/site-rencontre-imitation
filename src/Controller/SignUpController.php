@@ -34,6 +34,12 @@ class SignUpController extends AbstractController
 
             $fieldNumber = $request->request->get('q');
             if ($form->get($fields[$fieldNumber])->isValid()) {
+                if($fields[$fieldNumber] == 'inRelationship' && $form->get('inRelationship')->getData() == "1"){
+                    return $this->render('sign_up/form.html.twig', [
+                        'form' => $form->createView(),
+                        'questionNumber' => $fieldNumber + 1
+                    ]);
+                }
                 return $this->render('sign_up/form.html.twig', [
                     'form' => $form->createView(),
                     'questionNumber' => $fieldNumber + 1

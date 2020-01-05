@@ -81,39 +81,83 @@
                     </div>
                 </div>
                 <div class="row right-align">
-                    <button data-id="3" class="waves-effect waves-light btn submit-field">Valider la
-                        réponse</button>
+                    <button data-id="3" class="waves-effect waves-light btn submit-field">Valider la réponse</button>
                 </div>
             </div>
+
             <div id="q-4">
                 <p class="padding-20-30 bg-pink rounded fit-content white-text">Quel est votre prénom?</p>
                 <div class="input-field">
                     {{form_row(form.firstname)}}
                 </div>
                 <div class="row right-align">
-                    <button data-id="4"  class="waves-effect waves-light btn submit-field">Valider la
+                    <button data-id="4" class="waves-effect waves-light btn submit-field">Valider la
                         réponse</button>
                 </div>
             </div>
             <div id="q-5">
-                {{form_row(form.email)}}
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Quel est votre adresse mail?</p>
+                <div class="input-field">
+                    {{form_row(form.email)}}
+                </div>
+                <div class="row right-align">
+                    <button data-id="5" class="waves-effect waves-light btn submit-field">Valider la
+                        réponse</button>
+                </div>
+            </div>
+            <div id="q-6">
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Choisissez un mot de passe</p>
+                <div class="input-field">
+                    {{form_row(form.password)}}
+                </div>
+                <div class="row right-align">
+                    <button data-id="6" class="waves-effect waves-light btn submit-field">Valider la
+                        réponse</button>
+                </div>
             </div>
             <div id="q-7">
-                {{form_row(form.password)}}
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Choisissez un mot de passe</p>
+                <div class="row">
+                    {{form_label(form.birthday)}}
+                </div>
+                {% for select in form.birthday %}
+                <div class="input-field col s12 m4 l4">
+                    {{form_widget(select, { 'attr': {'class': 'display'} })}}
+                </div>
+                {% endfor %}
+                <div class="row right-align">
+                    <button data-id="7" class="waves-effect waves-light btn submit-field">Valider la
+                        réponse</button>
+                </div>
             </div>
             <div id="q-8">
-                {{form_row(form.birthday)}}
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Quelle est votre situation
+                    relationnelle?</p>
+                {% for child in form.inRelationship %}
+                <div class="col s12 m4 l4 xl4 margin-bottom-35 right-align">
+                    {{form_widget(child, {'attr':{'class':'submit-field','data-id' : '8'}})}}
+                    {{form_label(child, null, {'label_attr' : {'class' : 'btn-large-bubble submit-field', 'tabindex' : '0', 'data-id' : '8'}})}}
+                </div>
+                {% endfor %}
             </div>
             <div id="q-9">
-                {{form_row(form.isSerious)}}
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Que recherchez-vous?</p>
+                {% for child in form.relationType %}
+                <div class="col s12 m4 l4 xl4 margin-bottom-35 right-align">
+                    {{form_widget(child, {'attr':{'class':'submit-field','data-id' : '9'}})}}
+                    {{form_label(child, null, {'label_attr' : {'class' : 'btn-large-bubble submit-field', 'tabindex' : '0', 'data-id' : '9'}})}}
+                </div>
+                {% endfor %}
             </div>
             <div id="q-10">
-                {{form_row(form.isMarried)}}
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Avez-vous des enfants?</p>
+                {% for child in form.hasChildren %}
+                {{form_widget(child, {'attr':{'class':'submit-field','data-id' : '9'}})}}
+                {{form_label(child, null, {'label_attr' : {'class' : 'btn-large-bubble submit-field', 'tabindex' : '0', 'data-id' : '10'}})}}
+                {% endfor %}
             </div>
             <div id="q-11">
-                {{form_row(form.hasChildren)}}
-            </div>
-            <div id="q-12">
+                <p class="padding-20-30 bg-pink rounded fit-content white-text">Etes-vous un fumeur régulier?</p>
                 {{form_row(form.isSmoker)}}
             </div>
             {{form_end(form)}}

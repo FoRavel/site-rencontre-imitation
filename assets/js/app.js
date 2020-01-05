@@ -22,21 +22,21 @@ $("label[for^='user_meet_']").hover(function () {
 })*/
 
 
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
+//   $(document).ready(function(){
+//     $('.datepicker').datepicker();
+//   });
 
-// $("div[id^='q-'").css('display', 'none');
-// $("#q-1").toggle()
-// var n = 1;
-// $('#signup_form input[type=radio]').change(function () {
-//     $('#q-' + n).toggle();
-//     n++;
-//     $('#q-' + n).toggle();
-// })
+$("div[id^='q-'").css('display', 'none');
+$("#q-1").toggle()
+var n = 1;
+$('#signup_form input[type=radio]').change(function () {
+    $('#q-' + n).toggle();
+    n++;
+    $('#q-' + n).toggle();
+})
 
 handleRB();
-handleIT();
+handleSubmit();
 
 //Hide all form questions but one
 function showTheQuestion(n) {
@@ -44,8 +44,19 @@ function showTheQuestion(n) {
     $("#q-" + n).toggle()
 }
 
+$("input[id^='user_inRelationship_1'").change(function () {
+    $("label[for^='user_inRelationship_1'").addClass("btn-large-bubble__choiced");
+    $("label[for^='user_inRelationship_0'").removeClass("btn-large-bubble__choiced");
+
+})
+$("input[id^='user_inRelationship_0'").change(function () {
+    $("label[for^='user_inRelationship_0'").addClass("btn-large-bubble__choiced");
+    $("label[for^='user_inRelationship_1'").removeClass("btn-large-bubble__choiced");
+
+})
+
 //Add focus style and confirmation radio choice with spacebar
-function handleRB(){
+function handleRB() {
     $("label[for^='user_Gender_']").focus(function () {
         $(this).addClass("focused");
         $(this).keypress(function () {
@@ -63,6 +74,19 @@ function handleRB(){
             }
         })
     })
+    $("label[for^='user_inRelationship_']").focus(function () {
+        $(this).addClass("focused");
+        $(this).keypress(function () {
+            if (event.which == 32) {
+                if ($(this).attr("for") == "user_inRelationship_0") {
+                    $("#user_inRelationship_0").change()
+                } else
+                    if ($(this).attr("for") == "user_inRelationship_1") {
+                        $("#user_inRelationship_1").change()
+                    }
+            }
+        })
+    })
 
     $("label[for^='user_meet_']").focusout(function () {
         $(this).removeClass("focused");
@@ -72,18 +96,21 @@ function handleRB(){
         $(this).removeClass("focused");
 
     })
+
+
+
 }
 
-function handleIT() {
+function handleSubmit() {
 
     var btn = null;
 
-    $(".submit-field").on("click", function (e) {
+    $(".submit-field").on("click change", function (e) {
         btn = $(this);
         $("#signup_form").submit();
-  
-    })
-    
+
+    })  
+
     $("#signup_form").on("submit", function (e) {
         var questionNumber = btn.attr('data-id');
         console.log(questionNumber)
@@ -94,12 +121,14 @@ function handleIT() {
             method: 'POST',
             data: $form.serialize() + "&q=" + questionNumber,
             success: function (data) {
-                $form.closest('.wrapper-form').html(data);               
-                handleIT();
+                $form.closest('.wrapper-form').html(data);
+                handleSubmit();
+                handleRB();
                 showTheQuestion($("#test").attr('data-id'));
+                console.log("success")
             },
             error: function (error) {
-                alert("test")
+                console.log(error)
             }
         });
     })

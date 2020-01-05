@@ -29,21 +29,40 @@ class UserType extends AbstractType
             ->add('firstname', null, ['attr' => ['data-field' => 'firstname']])
             ->add('email')
             ->add('password')
-            ->add('birthday', BirthdayType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+            ->add('birthday') //birthdaytype marche pas (error 500)
+            ->add('inRelationship', ChoiceType::class, [
+                'label'    => 'Quelle est votre situation relationnelle',
+                'expanded' => true,
+                'choices'  => [
+                    'Je suis en couple' => true,
+                    'Je suis célibitaire' => false,
                 ]
             ])
-            ->add('isSerious')
-            ->add('isMarried')
-            ->add('hasChildren')
+            ->add('relationType', ChoiceType::class, [
+                'label'    => 'Quelle est votre situation relationnelle',
+                'expanded' => true,
+                'choices'  => [
+                    'Une relation amoureuse' => 'love',
+                    'Me faire des amis' => 'friend',
+                    'Relation d\'un soir' => 'sex',
+                    'Rien de précis, je souhaite simplement faire des rencontres' => 'indecis'
+                ]
+            ])
+            ->add('hasChildren', ChoiceType::class, [
+                'label'    => 'Avez-vous des enfants?',
+                'expanded' => true,
+                'choices'  => [
+                    'Oui' => true,
+                    'Non' => false,
+                ]
+            ])
             ->add('city', null, ['attr' => ['data-field' => 'city']])
+            // ->add('isSerious')
+            // ->add('isMarried')
             //->add('country')
             ->add('isSmoker')
-            ->add('Gender', EntityType::class, [
-                // looks for choices from this entity
+            ->add('Gender', EntityType::class, [     
                 'class' => Gender::class,
-                // uses the User.username property as the visible option string
                 'choice_label' => 'label',
                 'expanded' => true])
         ;

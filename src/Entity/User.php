@@ -52,32 +52,42 @@ class User
      * @ORM\Column(type="date")
      */
     private $birthday;
-
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $inRelationship;
+    
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $relationType;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasChildren;
+    
     /**
      * @ORM\Column(type="boolean")
      */
     private $isSerious;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isMarried;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $hasChildren;
-
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $country;
-
+    
     /**
      * @ORM\Column(type="boolean")
      */
     private $isSmoker;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMarried;
+
 
     public function getProperties(){
        return get_object_vars($this);
@@ -228,6 +238,30 @@ class User
     public function setMeet(string $meet): self
     {
         $this->meet = $meet;
+
+        return $this;
+    }
+
+    public function getInRelationship(): ?bool
+    {
+        return $this->inRelationship;
+    }
+
+    public function setInRelationship(bool $inRelationship): self
+    {
+        $this->inRelationship = $inRelationship;
+
+        return $this;
+    }
+
+    public function getRelationType(): ?string
+    {
+        return $this->relationType;
+    }
+
+    public function setRelationType(string $relationType): self
+    {
+        $this->relationType = $relationType;
 
         return $this;
     }
