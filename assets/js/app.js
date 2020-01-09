@@ -26,7 +26,7 @@ $("label[for^='user_meet_']").hover(function () {
 //     $('.datepicker').datepicker();
 //   });
 
-$("div[id^='q-'").css('display', 'none');
+$("div[id^='q-']").css('display', 'none');
 $("#q-1").toggle()
 var n = 1;
 $('#signup_form input[type=radio]').change(function () {
@@ -38,22 +38,25 @@ $('#signup_form input[type=radio]').change(function () {
 handleRB();
 handleSubmit();
 
-//Hide all form questions but one
-function showTheQuestion(n) {
-    $("div[id^='q-'").css('display', 'none');
-    $("#q-" + n).toggle()
-}
-
 $("input[id^='user_inRelationship_1'").change(function () {
     $("label[for^='user_inRelationship_1'").addClass("btn-large-bubble__choiced");
     $("label[for^='user_inRelationship_0'").removeClass("btn-large-bubble__choiced");
-
 })
 $("input[id^='user_inRelationship_0'").change(function () {
     $("label[for^='user_inRelationship_0'").addClass("btn-large-bubble__choiced");
     $("label[for^='user_inRelationship_1'").removeClass("btn-large-bubble__choiced");
-
 })
+
+//TODO Replace display by opacity
+function showTheQuestion(n) {
+    $("div[id^='q-']").css('display', 'none');
+    $("#q-" + n).toggle();
+}
+
+function appendQuestionInChat(n) {
+    var label = $("#q-" + n + " > p").html();
+    $(".chat").append("<p class='padding-20-30 bg-pink rounded fit-content white-text'>"+ label+"</p>");
+}
 
 //Add focus style and confirmation radio choice with spacebar
 function handleRB() {
@@ -70,7 +73,6 @@ function handleRB() {
                         if ($(this).attr("for") == "user_Gender_2") {
                             $("#user_Gender_2").change()
                         }
-
             }
         })
     })
@@ -125,7 +127,7 @@ function handleSubmit() {
                 handleSubmit();
                 handleRB();
                 showTheQuestion($("#test").attr('data-id'));
-                console.log("success")
+                appendQuestionInChat($("#test").attr('data-id'));
             },
             error: function (error) {
                 console.log(error)
