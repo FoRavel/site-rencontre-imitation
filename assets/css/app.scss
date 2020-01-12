@@ -6,6 +6,10 @@ body {
     color: #737373;
 }
 
+html, body, .container, main{
+    height: 100%;
+}
+
 .focused{
     outline: dotted black;
 }
@@ -27,8 +31,7 @@ body {
 }
 
 
-
-.rounded{
+.rounded-1101{
     -webkit-border-radius: 130px;
     -webkit-border-bottom-left-radius: 0;
     -moz-border-radius: 130px;
@@ -37,14 +40,24 @@ body {
     border-bottom-left-radius: 0;
 }
 
+.rounded{
+    -webkit-border-radius: 130px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius: 130px;
+    border-radius: 130px;
+
+}
+
 .fit-content{
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
+    display: inline-block;
 }
 
 .bg-pink{
-    @extend .pink, .lighten-3;
+    @extend .pink, .lighten-2;
+}
+
+.bg-blue{
+    @extend .blue, .lighten-2;
 }
 
 .display{
@@ -65,6 +78,35 @@ body {
     -moz-border-radius-bottomleft: 0;
     border-radius: 130px !important;
     border-bottom-right-radius: 0!important;
+}
+
+.container-form-chat{
+    height: 100%;
+}
+.chat{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: height 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    height: 0;
+}
+.translate{
+    height: 70%;
+}
+
+.answer-question, .answer{
+    will-change: opacity;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}
+
+
+.show{
+    transform: scale(1);
+}
+
+main{
+    overflow: hidden;
 }
 
 

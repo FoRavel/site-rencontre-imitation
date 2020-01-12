@@ -31,8 +31,8 @@ class SignUpController extends AbstractController
 
         // render just the form for AJAX, there is a validation error
         if ($request->isXmlHttpRequest()) {
-
             $fieldNumber = $request->request->get('q');
+            $method = 'get' . ucfirst($fields[$fieldNumber]);
             if ($form->get($fields[$fieldNumber])->isValid()) {
                 if($fields[$fieldNumber] == 'inRelationship' && $form->get('inRelationship')->getData() == "1"){
                     return $this->render('sign_up/form.html.twig', [
@@ -40,9 +40,18 @@ class SignUpController extends AbstractController
                         'questionNumber' => $fieldNumber + 1
                     ]);
                 }
+                if($fields[$fieldNumber] == 'birthday'){
+                   $datetime =  $user->$method();
+                    return $this->render('sign_up/form.html.twig', [
+                        'form' => $form->createView(),
+                        'questionNumber' => $fieldNumber + 1,
+                        'previousAnswer' => $datetime->format('Y-m-d')
+                    ]);
+                }
                 return $this->render('sign_up/form.html.twig', [
                     'form' => $form->createView(),
-                    'questionNumber' => $fieldNumber + 1
+                    'questionNumber' => $fieldNumber + 1,
+                    'previousAnswer' => $user->$method()
                 ]);
                 // return new Response($fields[$fieldNumber]);
             } else {
@@ -53,8 +62,6 @@ class SignUpController extends AbstractController
             }
         }
 
-
-
         return $this->render('sign_up/index.html.twig', [
             'form' => $form->createView()
         ]);
@@ -62,5 +69,6 @@ class SignUpController extends AbstractController
 
     public function checkForm()
     {
+
     }
 }

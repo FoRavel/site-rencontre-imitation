@@ -26,13 +26,11 @@ $("label[for^='user_meet_']").hover(function () {
 //     $('.datepicker').datepicker();
 //   });
 
-$("div[id^='q-']").css('display', 'none');
-$("#q-1").toggle()
 var n = 1;
+showTheQuestion(n)
 $('#signup_form input[type=radio]').change(function () {
-    $('#q-' + n).toggle();
     n++;
-    $('#q-' + n).toggle();
+    showTheQuestion(n);
 })
 
 handleRB();
@@ -42,6 +40,7 @@ $("input[id^='user_inRelationship_1'").change(function () {
     $("label[for^='user_inRelationship_1'").addClass("btn-large-bubble__choiced");
     $("label[for^='user_inRelationship_0'").removeClass("btn-large-bubble__choiced");
 })
+
 $("input[id^='user_inRelationship_0'").change(function () {
     $("label[for^='user_inRelationship_0'").addClass("btn-large-bubble__choiced");
     $("label[for^='user_inRelationship_1'").removeClass("btn-large-bubble__choiced");
@@ -51,11 +50,25 @@ $("input[id^='user_inRelationship_0'").change(function () {
 function showTheQuestion(n) {
     $("div[id^='q-']").css('display', 'none');
     $("#q-" + n).toggle();
+    if(n >= 3)
+        $(".chat").addClass("translate");
+    console.log("QUESTION NUMBER: " + n)    
 }
 
 function appendQuestionInChat(n) {
-    var label = $("#q-" + n + " > p").html();
-    $(".chat").append("<p class='padding-20-30 bg-pink rounded fit-content white-text'>"+ label+"</p>");
+    var label = $("#q-" + n + " label").html();
+    $(".chat").append("<div class='left-align'><p class='answer-question row padding-20-30 bg-pink rounded-1101 fit-content white-text'>"+ label+"</p></div>");
+    var ansquenode = $(".answer-question");
+    setTimeout(function(){ ansquenode.addClass("show") }, 3000);
+    console.log("ADDED QUESTION NUMBER: " + n)    
+}
+
+function appendAnswerInChat() {
+    var answer = $("#test").attr("data-answer");
+    $(".chat").append("<div class='right-align'><p class='answer padding-20-30 bg-blue rounded fit-content white-text'>"+ answer +"</p></div>");
+    var ans = $(".answer");
+    setTimeout(function(){ ans.addClass("show") }, 1000);
+    console.log("ANSWER QUESTION NUMBER: " + n)   
 }
 
 //Add focus style and confirmation radio choice with spacebar
@@ -96,11 +109,7 @@ function handleRB() {
 
     $("label[for^='user_Gender_']").focusout(function () {
         $(this).removeClass("focused");
-
     })
-
-
-
 }
 
 function handleSubmit() {
@@ -127,6 +136,7 @@ function handleSubmit() {
                 handleSubmit();
                 handleRB();
                 showTheQuestion($("#test").attr('data-id'));
+                appendAnswerInChat();
                 appendQuestionInChat($("#test").attr('data-id'));
             },
             error: function (error) {
